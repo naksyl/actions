@@ -25,4 +25,4 @@ jobs:
         
       - name: Hello
         run: |
-          A:/usr/bin/bash -lc "Hello world"
+          A:/usr/bin/bash -lc "echo Hello world"
