@@ -25,10 +25,6 @@ jobs:
       - name: Export PATH
         run: |
           [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\bin", "Machine")
-          
-      - name: Shell test
-        shell: |
-          A:\usr\bin\bash.exe -lc "pacman -Sl"
         
       - name: Test PATH
         shell: bash
