@@ -1,0 +1,26 @@
+name: main
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: 'The package to build'
+        required: true
+      build_only:
+        description: 'Skip deployment (if non-empty)'
+        required: false
+
+env:
+  PACKAGE_TO_BUILD: "${{github.event.inputs.package}}"
+  BUILD_ONLY: "${{github.event.inputs.build_only}}"
+  GPG_OPTIONS: "--batch --yes --no-tty --list-options no-show-photos --verify-options no-show-photos --pinentry-mode loopback"
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    steps:
+      - name: Mount MSYS on A:/
+        run: subst A: C:\msys64
+        
+      - name: Hello
+        run: A:/usr/bin/bash -lc "Hello world"
