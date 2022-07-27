@@ -22,12 +22,24 @@ jobs:
       - name: Mount MSYS on A:/
         run: |
           subst A: C:\msys64
-      
+      - name: Export PATH
+        run: |
+          [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\bin", "Machine")
+          
       - name: Shell test
         shell: |
-          A:\usr\bin\bash.exe -lc '{0}'
-        run: pacman -Sl
+          A:\usr\bin\bash.exe -lc "pacman -Sl"
         
+      - name: Test PATH
+        shell: bash
+        run: pwd
+        
+      - name: Test shell arguments
+        shell: |
+          bash -lc {0}
+        run: |
+          pacman -Syu
+          
       - name: Hello
         run: |
           A:/usr/bin/bash -lc "echo Hello world"
