@@ -20,7 +20,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Mount MSYS on A:/
-        run: subst A: C:\msys64
+        run: |
+          subst A: C:\msys64
         
       - name: Hello
-        run: A:/usr/bin/bash -lc "Hello world"
+        run: |
+          A:/usr/bin/bash -lc "Hello world"
