@@ -25,7 +25,7 @@ jobs:
       
       - name: Shell test
         shell: |
-          A:\usr\bin\bash -lc '{0}'
+          A:\usr\bin\bash.exe -lc '{0}'
         run: pacman -Sl
         
       - name: Hello
