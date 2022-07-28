@@ -24,19 +24,12 @@ jobs:
         run: |
           subst A: C:\msys64
           
-      - name: Print GITHUB_PATH
-        shell: bash
-        run:
-          echo ${GITHUB_PATH}
-          
-      - name: Content of ${GITHUB_PATH}
-        shell: bash
-        run: cat ${GITHUB_PATH}
-        
       - name: Export PATH
         shell: bash
-        run: echo -e "A:\usr\bin;$(cat ${GITHUB_PATH})" > ${GITHUB_PATH}
-        
+        run: echo -e "A:\usr\\bin$(cat ${GITHUB_PATH})" > ${GITHUB_PATH}
+      - name: Which bash
+        shell: bash {0}
+        run: cygpath -w /
       - name: Final PATH
         shell: cmd
         run: echo %PATH%
