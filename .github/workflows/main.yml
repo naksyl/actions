@@ -20,8 +20,12 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Mount MSYS on A:/
+        shell: cmd
         run: |
           subst A: C:\msys64
+          A:\usr\bin\bash -lc "which bash"
+          A:\usr\bin\echo %PATH%
+          
       - name: Export PATH
         run: |
           [Environment]::SetEnvironmentVariable("Path", "A:\usr\bin;"+$env:Path, "Machine")
