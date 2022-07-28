@@ -24,15 +24,14 @@ jobs:
           subst A: C:\msys64
       - name: Export PATH
         run: |
-          [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\bin", "Machine")
+          [Environment]::SetEnvironmentVariable("Path", "A:\usr\bin;"+$env:Path, "Machine")
         
       - name: Test PATH
-        shell: bash
-        run: pwd
+        shell: cmd
+        run: ls /d
         
       - name: Test shell arguments
-        shell: |
-          bash -lc {0}
+        shell: bash {0}
         run: |
           pacman -Syu
           
