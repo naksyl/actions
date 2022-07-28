@@ -23,13 +23,16 @@ jobs:
         shell: cmd
         run: |
           subst A: C:\msys64
+          dir a:\
           
       - name: Export PATH
         shell: bash
-        run: echo -e "A:\usr\\bin$(cat ${GITHUB_PATH})" > ${GITHUB_PATH}
+        run: echo -e "A:/usr/bin$(cat ${GITHUB_PATH})" > ${GITHUB_PATH}
       - name: Which bash
-        shell: bash {0}
+        shell: a:/usr/bin/bash {0}
         run: cygpath -w /
       - name: Final PATH
         shell: cmd
-        run: echo %PATH%
+        run: |
+          echo %PATH%
+          where bash
