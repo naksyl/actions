@@ -29,15 +29,14 @@ jobs:
       - name: Export PATH
         run: |
           [Environment]::SetEnvironmentVariable("Path", "A:\usr\bin;"+$env:Path, "Machine")
-        
+      - name: Mount MSYS on A:/
+        shell: cmd
+        run: |
+         A:\usr\bin\echo %PATH%
       - name: Test PATH
         shell: cmd
         run: ls /d
-        
-      - name: Test shell arguments
-        shell: bash {0}
-        run: |
-          pacman -Syu
+
           
       - name: Hello
         run: |
