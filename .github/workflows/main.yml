@@ -29,7 +29,7 @@ jobs:
         shell: bash
         run: echo -e "A:/usr/bin$(cat ${GITHUB_PATH})" > ${GITHUB_PATH}
       - name: Which bash
-        shell: a:/usr/bin/bash {0}
+        shell: bash {0}
         run: cygpath -w /
       - name: Final PATH
         shell: cmd
