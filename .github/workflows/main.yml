@@ -23,21 +23,9 @@ jobs:
         shell: cmd
         run: |
           subst A: C:\msys64
-          A:\usr\bin\bash -lc "which bash"
-          A:\usr\bin\echo %PATH%
           
       - name: Export PATH
-        run: |
-          [Environment]::SetEnvironmentVariable("Path", "A:\usr\bin;"+$env:Path, "Machine")
-      - name: Mount MSYS on A:/
-        shell: cmd
-        run: |
-         A:\usr\bin\echo %PATH%
-      - name: Test PATH
-        shell: cmd
-        run: ls /d
-
-          
-      - name: Hello
-        run: |
-          A:/usr/bin/bash -lc "echo Hello world"
+        run: bash
+          echo ${GITHUB_PATH}
+          cat ${GITHUB_PATH}
+          echo -e "A:\usr\bin;$(cat ${GITHUB_PATH})" > ${GITHUB_PATH}
